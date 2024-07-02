@@ -1,0 +1,5 @@
+<div class="flex items-center justify-between w-full">
+  <input type="checkbox" [checked]="task.completed" (change)="toggle.emit()" class="mr-2">
+  <span [class.line-through]="task.completed">{{ task.title }}</span>
+  <button (click)="delete.emit()" class="ml-2 text-red-500">Eliminar</button>
+</div>
