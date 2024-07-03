@@ -1,5 +1,36 @@
-<div class="w-full">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-    <app-task-item *ngFor="let task of tasks" [task]="task" (toggle)="toggleTask(task.id)" (delete)="deleteTask(task.id)"></app-task-item>
+<div class="w-full mb-4 bg-white p-4 rounded-lg shadow-md">
+  <div class="flex justify-between items-center mb-3">
+    <button (click)="previousMonths()" [disabled]="displayedMonthsIndex === 0" class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-200">&larr;</button>
+    <h1 class="text-center font-bold mb-4 text-4xl text-primary">2024</h1>
+    <button (click)="nextMonths()" [disabled]="displayedMonthsIndex + 4 >= months.length" class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition duration-200">&rarr;</button>
+  </div>
+  <div class="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-4">
+    <ng-container *ngFor="let month of getDisplayedMonths(); let i = index">
+      <div class="col-span-1 bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+        <h3 class="text-center font-bold mb-4 text-xl text-primary">{{ month }}</h3>
+        <table class="w-full table-fixed">
+          <tbody>
+            <ng-container *ngFor="let day of getDaysInMonth(displayedMonthsIndex + i, currentYear)">
+              <tr>
+                <td class="p-2 border border-gray-300 align-top" [ngClass]="{'bg-yellow-300': isToday(day, displayedMonthsIndex + i)}">{{ day }}</td>
+                <td class="p-2 border border-gray-300 align-top" [ngClass]="{'bg-yellow-300': isToday(day, displayedMonthsIndex + i)}">
+                  <ng-container *ngFor="let task of getTasksForDay(day, displayedMonthsIndex + i)">
+                    <app-task-item
+                      [task]="task"
+                      (toggle)="toggleTask(task.id)"
+                      (delete)="deleteTask(task.id)"
+                      class="mb-4"
+                    ></app-task-item>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
   </div>
 </div>
+
+
+
