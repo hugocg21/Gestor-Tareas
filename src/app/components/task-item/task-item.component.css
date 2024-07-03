@@ -1,5 +1,47 @@
 .pill {
   padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+}
+
+.bg-yellow-200 {
+  background-color: #fefcbf;
+}
+
+.text-yellow-800 {
+  color: #975a16;
+}
+
+.bg-blue-200 {
+  background-color: #c3dafe;
+}
+
+.text-blue-800 {
+  color: #2a4365;
+}
+
+.bg-primary {
+  background-color: #4299e1;
+}
+
+.text-primary {
+  color: #4299e1;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.font-bold {
+  font-weight: bold;
 }
 
 .shadow-md {

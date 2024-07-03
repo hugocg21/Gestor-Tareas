@@ -1,13 +1,15 @@
 <div [ngClass]="getCardColor()" class="p-4 rounded shadow-md relative flex flex-col justify-between">
   <div>
     <div class="flex justify-between items-start mb-4">
-      <h2 class="text-2xl font-bold">{{ task.title }}</h2>
+      <h2 class="text-xl font-bold">{{ task.title }}</h2>
       <input type="checkbox" [checked]="task.completed" (change)="toggle.emit()" class="ml-2"/>
     </div>
     <p class="mb-4">{{ task.description }}</p>
   </div>
-  <div class="flex justify-between items-center">
-    <span class="pill bg-blue-200 text-blue-800 rounded-full text-sm inline-block">{{ task.dueDate | date : "dd/MM/yyyy" }}</span>
+  <div class="flex justify-center items-center mb-3">
+    <span *ngIf="getCardColor() === 'bg-yellow-100'" class="pill bg-red-100 text-yellow-800 rounded-full text-sm inline-block border border-red-400">{{ getDaysRemaining() }} días restantes</span>
+  </div>
+  <div class="flex justify-center items-center">
     <button (click)="delete.emit()" class="text-red-500 hover:text-red-700 transition duration-200">Eliminar</button>
   </div>
 </div>
