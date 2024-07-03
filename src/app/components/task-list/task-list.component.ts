@@ -1,3 +1,4 @@
+// src/app/components/task-list/task-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task';
@@ -24,11 +25,11 @@ export class TaskListComponent implements OnInit {
 
   toggleTask(id: number): void {
     this.taskService.toggleTask(id);
-    this.tasks = this.taskService.getTasks();
+    this.tasks = this.taskService.getTasks(); // Actualiza la lista de tareas
   }
 
   deleteTask(id: number): void {
     this.taskService.deleteTask(id);
-    this.tasks = this.taskService.getTasks(); 
+    this.tasks = this.taskService.getTasks(); // Actualiza la lista de tareas
   }
 }

@@ -1,0 +1,8 @@
+/* task-form.component.css */
+input {
+  transition: all 0.2s;
+}
+
+button {
+  transition: all 0.2s;
+}
