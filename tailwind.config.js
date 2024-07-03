@@ -32,6 +32,13 @@ module.exports = {
           dark: '#f56565',
         }
       },
+      backdropBlur: {
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '12px',
+        lg: '16px',
+        xl: '24px',
+      }
     },
   },
   plugins: [],

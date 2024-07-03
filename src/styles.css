@@ -2,12 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+body.modal-open {
+  overflow: hidden;
+}
+
 body {
   background-color: #edf2f7;
-  background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.custom-modalbox .mat-dialog-container {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .container {
@@ -20,4 +29,30 @@ body {
 
 .shadow-md {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button.add-button {
+  background-color: white;
+  color: #4299e1;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button.add-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+img.header-logo {
+  transition: transform 0.3s;
+}
+
+img.header-logo:hover {
+  transform: scale(1.1);
 }
