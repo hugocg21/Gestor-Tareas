@@ -1,26 +1,39 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.css']
+  styleUrls: ['./task-form.component.css'],
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnInit, OnDestroy {
   title: string = '';
   description: string = '';
-  dueDate: string = '';
-  @Output() taskAdded = new EventEmitter<void>();
+  dueDate: Date | null = null;
 
-  constructor(private taskService: TaskService) {}
+  constructor(
+    public dialogRef: MatDialogRef<TaskFormComponent>,
+    private taskService: TaskService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
-  addTask(): void {
-    if (this.title.trim() && this.description.trim() && this.dueDate) {
-      this.taskService.addTask(this.title, this.description, new Date(this.dueDate));
-      this.title = '';
-      this.description = '';
-      this.dueDate = '';
-      this.taskAdded.emit();
+  ngOnInit(): void {
+    document.body.classList.add('modal-open');
+  }
+
+  ngOnDestroy(): void {
+    document.body.classList.remove('modal-open');
+  }
+
+  onCancel(): void {
+    this.dialogRef.close();
+  }
+
+  onAdd(): void {
+    if (this.title && this.dueDate) {
+      this.taskService.addTask(this.title, this.description, this.dueDate);
+      this.dialogRef.close();
     }
   }
 
